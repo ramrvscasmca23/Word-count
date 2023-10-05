@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mydiv"></div>
+    <script>
+
+        var mystr='Chandrayaan-3 is the third mission in the Chandrayaan programme, a series of lunar- exploration missions developed by the Indian Space Research Organisation (ISRO). Launched in july 2023,the mission consists of a lunar lander named vikram and a lunar rover named Pragyan, similar to those launched with Chandrayaan-2 in 2019.The propulsion module carried the lander and rover configuration to lunar orbit in preparation for a powered descent by the lander.' 
+        mystr = mystr.replace(/[.,""\/#!$%\^&\*-;:{}()]/g,"").toLowerCase();
+        var words=mystr.split(" ");
+        let s={};
+        var myobj=[];
+        var ele=""
+
+        words.forEach(function(item){
+            if(s[item]){
+                s[item]++
+            }
+            else{
+                s[item]=1
+            }
+        });
+
+        for(let key in s){
+            myobj.push({[key]:s[key]});
+        }
+        
+        myobj.sort((a,b)=>{
+            let valueA=Object.values(a);
+            let valueB=Object.values(b);
+            return valueB-valueA;
+           
+        });
+
+        let topthree=myobj.slice(0,3)
+        console.log(topthree)
+
+    
+
+        topthree.forEach(item=>{
+            for(let key in item){
+                ele=ele+"<h1>"+`${key}:${item[key]}`+"</h1>";
+            }
+        })
+        
+        document.getElementById("mydiv").innerHTML=ele
+
+    </script>
+</body>
+</html>
